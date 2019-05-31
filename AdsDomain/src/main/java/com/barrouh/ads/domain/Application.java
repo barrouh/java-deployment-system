@@ -4,10 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,14 +25,13 @@ public class Application implements Serializable {
 	@Column(name = "APPLICATION_NAME", nullable = false)
     private String applicationName;
     
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "APPLICATION_TYPE", nullable = false)
-    private ApplicationType applicationType;
+	@Column(name = "APPLICATION_NAME", nullable = false)
+    private String  applicationType;
     
 	public Application() {
 	}
 
-	public Application(String applicationId, String applicationName, ApplicationType applicationType) {
+	public Application(String applicationId, String applicationName, String applicationType) {
 		this.applicationId = applicationId;
 		this.applicationName = applicationName;
 		this.applicationType = applicationType;
@@ -57,11 +53,11 @@ public class Application implements Serializable {
 		this.applicationName = applicationName;
 	}
 
-	public ApplicationType getApplicationType() {
+	public String getApplicationType() {
 		return applicationType;
 	}
 
-	public void setApplicationType(ApplicationType applicationType) {
+	public void setApplicationType(String applicationType) {
 		this.applicationType = applicationType;
 	}
 
