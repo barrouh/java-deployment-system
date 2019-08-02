@@ -1,11 +1,16 @@
 package com.barrouh.ads.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
-import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Repository;
 
 import com.barrouh.ads.dao.ApplicationRepository;
@@ -14,6 +19,7 @@ import com.barrouh.ads.dao.ServerHostRepository;
 import com.barrouh.ads.dao.UserRepository;
 import com.barrouh.ads.domain.Application;
 import com.barrouh.ads.domain.Binding;
+import com.barrouh.ads.domain.Filter;
 import com.barrouh.ads.domain.ServerHost;
 import com.barrouh.ads.domain.User;
 
@@ -23,11 +29,25 @@ import com.barrouh.ads.domain.User;
  *
  */
 @Repository
-public class AdsRepository implements ApplicationRepository, BindingRepository ,ServerHostRepository, UserRepository {
-	
-	@PersistenceContext
+public class AdsRepository implements ApplicationRepository, BindingRepository, ServerHostRepository, UserRepository {
+
 	@Autowired
-	private LocalContainerEntityManagerFactoryBean  entityManagerFactoryBean;
+	private SessionFactory sessionFactory;
+
+	public Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
+
+	private <T> List<T> getDataUsingFilter(Filter<T> filter) {
+		CriteriaBuilder builder = getSession().getCriteriaBuilder();
+		CriteriaQuery<T> query = builder.createQuery(filter.getResultClass());
+		Root<T> root = query.from(filter.getResultClass());
+		for (Map.Entry<String, Object> entry : filter.getKeysValues().entrySet()) {
+			query.select(root).where(builder.equal(root.get(entry.getKey()), entry.getValue()));
+		}
+		Query<T> q = getSession().createQuery(query);
+		return q.list();
+	}
 
 	@Override
 	public int addUser(User user) {
@@ -49,7 +69,6 @@ public class AdsRepository implements ApplicationRepository, BindingRepository ,
 
 	@Override
 	public List<User> getAllUsers() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -148,7 +167,5 @@ public class AdsRepository implements ApplicationRepository, BindingRepository ,
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	
 
 }

@@ -1,16 +1,20 @@
 package com.barrouh.ads.service;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class AdsServiceTest {
 	
+	@Autowired
 	private AdsService adsService;
 
 	@Test
 	public void addUserTest() {
 		
+		System.out.println(adsService.getAllUsers().size());
+		
 	}
-
+/*
 	@Test
 	public void updateUserTest() {
 	
@@ -104,6 +108,6 @@ public class AdsServiceTest {
 	@Test
 	public void deleteApplicationTest() {
 		
-	}
+	}*/
 
 }
