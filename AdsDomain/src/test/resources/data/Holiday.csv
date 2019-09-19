@@ -1,0 +1,3 @@
+refholiday,daterequest,startdate,enddate,duration,employeeid,status,comment,type
+"BRH1","2018-10-10 16:47:38.476","2018-10-11 16:47:38.476","2018-10-17 16:47:38.476",6,1214,"PENDING","","VACATION"
+"BRH2","2018-10-10 16:47:38.476","2018-10-11 16:47:38.476","2018-10-17 16:47:38.476",6,1214,"PENDING","","VACATION"

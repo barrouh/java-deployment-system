@@ -1,11 +1,10 @@
 package com.barrouh.ads.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +18,6 @@ import com.barrouh.ads.dao.ServerHostRepository;
 import com.barrouh.ads.dao.UserRepository;
 import com.barrouh.ads.domain.Application;
 import com.barrouh.ads.domain.Binding;
-import com.barrouh.ads.domain.Filter;
 import com.barrouh.ads.domain.ServerHost;
 import com.barrouh.ads.domain.User;
 
@@ -37,135 +35,118 @@ public class AdsRepository implements ApplicationRepository, BindingRepository, 
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-
-	private <T> List<T> getDataUsingFilter(Filter<T> filter) {
+	
+	private <T> List<T> createQuery(Class<T> resultClass) {
 		CriteriaBuilder builder = getSession().getCriteriaBuilder();
-		CriteriaQuery<T> query = builder.createQuery(filter.getResultClass());
-		Root<T> root = query.from(filter.getResultClass());
-		for (Map.Entry<String, Object> entry : filter.getKeysValues().entrySet()) {
-			query.select(root).where(builder.equal(root.get(entry.getKey()), entry.getValue()));
-		}
+		CriteriaQuery<T> query = builder.createQuery(resultClass);
 		Query<T> q = getSession().createQuery(query);
-		return q.list();
+		if (!q.list().isEmpty()) {
+			List<T> res = new ArrayList<>();
+		    res.add(q.getSingleResult());
+		    return res;
+		} else {
+			return q.list();
+		}
 	}
 
 	@Override
-	public int addUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void addUser(User user) {
+		getSession().save(user);
 	}
 
 	@Override
-	public int updateUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void updateUser(User user) {
+		getSession().update(user);
 	}
 
 	@Override
 	public User getUserByUserName(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+		return getSession().get(User.class, userName);
 	}
 
 	@Override
 	public List<User> getAllUsers() {
-		return null;
+		return createQuery(User.class);
 	}
 
 	@Override
-	public int deleteUser(String userName) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteUser(String userName) {
+		getSession().delete(getUserByUserName(userName));
 	}
 
 	@Override
-	public int addServerHost(ServerHost serverHost) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void addServerHost(ServerHost serverHost) {
+		getSession().save(serverHost);
 	}
 
 	@Override
-	public int updateServerHost(ServerHost serverHost) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void updateServerHost(ServerHost serverHost) {
+		getSession().update(serverHost);
 	}
 
 	@Override
 	public ServerHost getServerHostByName(String serverName) {
-		// TODO Auto-generated method stub
-		return null;
+		return getSession().get(ServerHost.class, serverName);
 	}
 
 	@Override
 	public List<ServerHost> getAllServerHosts() {
-		// TODO Auto-generated method stub
-		return null;
+		return createQuery(ServerHost.class);
 	}
 
 	@Override
-	public int deleteServerHost(String serverName) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteServerHost(String serverName) {
+		getSession().delete(getServerHostByName(serverName));
 	}
 
 	@Override
-	public int addBinding(Binding binding) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void addBinding(Binding binding) {
+		getSession().save(binding);
 	}
 
 	@Override
-	public int updateBinding(Binding binding) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void updateBinding(Binding binding) {
+		getSession().update(binding);
 	}
 
 	@Override
 	public Binding getBindingById(String bindingId) {
-		// TODO Auto-generated method stub
-		return null;
+		return getSession().get(Binding.class, bindingId);
 	}
 
 	@Override
 	public List<Binding> getAllBindings() {
-		// TODO Auto-generated method stub
-		return null;
+		return createQuery(Binding.class);
 	}
 
 	@Override
-	public int deleteBinding(String bindingId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteBinding(String bindingId) {
+		getSession().delete(getBindingById(bindingId));
 	}
 
 	@Override
-	public int addApplication(Application application) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void addApplication(Application application) {
+		getSession().save(application);
 	}
 
 	@Override
-	public int updateApplication(Application application) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void updateApplication(Application application) {
+		getSession().update(application);
 	}
 
 	@Override
 	public Application getApplicationById(String applicationId) {
-		// TODO Auto-generated method stub
-		return null;
+		return getSession().get(Application.class, applicationId);
 	}
 
 	@Override
 	public List<Application> getAllApplications() {
-		// TODO Auto-generated method stub
-		return null;
+		return createQuery(Application.class);
 	}
 
 	@Override
-	public int deleteApplication(String applicationId) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void deleteApplication(String applicationId) {
+		getSession().delete(getApplicationById(applicationId));
 	}
 
 }

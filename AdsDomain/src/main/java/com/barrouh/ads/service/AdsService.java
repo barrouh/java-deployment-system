@@ -3,6 +3,8 @@ package com.barrouh.ads.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.barrouh.ads.dao.ApplicationRepository;
 import com.barrouh.ads.dao.BindingRepository;
@@ -19,108 +21,129 @@ import com.barrouh.ads.domain.User;
  * @author mbarrouh
  *
  */
+@Service
 public class AdsService implements ApplicationRepository, BindingRepository ,ServerHostRepository, UserRepository {
 	
 	@Autowired
 	AdsRepository adsRepository;
 
 	@Override
-	public int addUser(User user) {
-		return adsRepository.addUser(user);
+	@Transactional
+	public void addUser(User user) {
+		 adsRepository.addUser(user);
 	}
 
 	@Override
-	public int updateUser(User user) {
-		return adsRepository.updateUser(user);
+	@Transactional
+	public void updateUser(User user) {
+		 adsRepository.updateUser(user);
 	}
 
 	@Override
+	@Transactional
 	public User getUserByUserName(String userName) {
 		return adsRepository.getUserByUserName(userName);
 	}
 
 	@Override
+	@Transactional
 	public List<User> getAllUsers() {
 		return adsRepository.getAllUsers();
 	}
 
 	@Override
-	public int deleteUser(String userName) {
-		return adsRepository.deleteUser(userName);
+	@Transactional
+	public void deleteUser(String userName) {
+		 adsRepository.deleteUser(userName);
 	}
 
 	@Override
-	public int addServerHost(ServerHost serverHost) {
-		return adsRepository.addServerHost(serverHost);
+	@Transactional
+	public void addServerHost(ServerHost serverHost) {
+		 adsRepository.addServerHost(serverHost);
 	}
 
 	@Override
-	public int updateServerHost(ServerHost serverHost) {
-		return adsRepository.updateServerHost(serverHost);
+	@Transactional
+	public void updateServerHost(ServerHost serverHost) {
+		 adsRepository.updateServerHost(serverHost);
 	}
 
 	@Override
+	@Transactional
 	public ServerHost getServerHostByName(String serverName) {
 		return adsRepository.getServerHostByName(serverName);
 	}
 
 	@Override
+	@Transactional
 	public List<ServerHost> getAllServerHosts() {
 		return adsRepository.getAllServerHosts();
 	}
 
 	@Override
-	public int deleteServerHost(String serverName) {
-		return adsRepository.deleteServerHost(serverName);
+	@Transactional
+	public void deleteServerHost(String serverName) {
+		 adsRepository.deleteServerHost(serverName);
 	}
 
 	@Override
-	public int addBinding(Binding binding) {
-		return adsRepository.addBinding(binding);
+	@Transactional
+	public void addBinding(Binding binding) {
+		 adsRepository.addBinding(binding);
 	}
 
 	@Override
-	public int updateBinding(Binding binding) {
-		return adsRepository.updateBinding(binding);
+	@Transactional
+	public void updateBinding(Binding binding) {
+		 adsRepository.updateBinding(binding);
 	}
 
 	@Override
+	@Transactional
 	public Binding getBindingById(String bindingId) {
 		return adsRepository.getBindingById(bindingId);
 	}
 
 	@Override
+	@Transactional
 	public List<Binding> getAllBindings() {
 		return adsRepository.getAllBindings();
 	}
 
 	@Override
-	public int deleteBinding(String bindingId) {
-		return adsRepository.deleteBinding(bindingId);
+	@Transactional
+	public void deleteBinding(String bindingId) {
+		 adsRepository.deleteBinding(bindingId);
 	}
 
 	@Override
-	public int addApplication(Application application) {
-		return adsRepository.addApplication(application);
+	@Transactional
+	public void addApplication(Application application) {
+		 adsRepository.addApplication(application);
 	}
 
 	@Override
-	public int updateApplication(Application application) {
-		return adsRepository.updateApplication(application);
+	@Transactional
+	public void  updateApplication(Application application) {
+		 adsRepository.updateApplication(application);
 	}
 
 	@Override
+	@Transactional
 	public Application getApplicationById(String applicationId) {
 		return adsRepository.getApplicationById(applicationId);
 	}
 
 	@Override
+	@Transactional
 	public List<Application> getAllApplications() {
 		return adsRepository.getAllApplications();
 	}
 
 	@Override
-	public int deleteApplication(String applicationId) {
-		return adsRepository.deleteApplication(applicationId);
+	@Transactional
+	public void deleteApplication(String applicationId) {
+		 adsRepository.deleteApplication(applicationId);
 	}
 }

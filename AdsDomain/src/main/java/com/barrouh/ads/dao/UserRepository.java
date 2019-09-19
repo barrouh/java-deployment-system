@@ -11,14 +11,13 @@ import com.barrouh.ads.domain.User;
  */
 public interface UserRepository {
 	
-	int addUser(User user); 
+	void addUser(User user); 
     
-    int updateUser(User user); 
+    void updateUser(User user); 
     
     User getUserByUserName(String userName); 
     
     List<User> getAllUsers(); 
     
-    int deleteUser(String userName);
-
+    void deleteUser(String userName);
 }

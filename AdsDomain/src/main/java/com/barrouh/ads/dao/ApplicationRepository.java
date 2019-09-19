@@ -11,13 +11,13 @@ import com.barrouh.ads.domain.Application;
  */
 public interface ApplicationRepository {
 	
-    int addApplication(Application application); 
+    void addApplication(Application application); 
     
-    int updateApplication(Application application); 
+    void updateApplication(Application application); 
     
     Application getApplicationById(String applicationId); 
     
     List<Application> getAllApplications(); 
     
-    int deleteApplication(String applicationId); 
+    void deleteApplication(String applicationId); 
 }

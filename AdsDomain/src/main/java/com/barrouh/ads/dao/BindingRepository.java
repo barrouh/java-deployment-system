@@ -11,14 +11,14 @@ import com.barrouh.ads.domain.Binding;
  */
 public interface BindingRepository {
 	
-    int addBinding(Binding binding); 
+    void addBinding(Binding binding); 
     
-    int updateBinding(Binding binding); 
+    void updateBinding(Binding binding); 
     
     Binding getBindingById(String bindingId); 
     
     List<Binding> getAllBindings(); 
     
-    int deleteBinding(String bindingId); 
+    void deleteBinding(String bindingId); 
 
 }

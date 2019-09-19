@@ -11,14 +11,13 @@ import com.barrouh.ads.domain.ServerHost;
  */
 public interface ServerHostRepository {
 	
-	    int addServerHost(ServerHost serverHost); 
+	    void addServerHost(ServerHost serverHost); 
 	    
-	    int updateServerHost(ServerHost serverHost); 
+	    void updateServerHost(ServerHost serverHost); 
 	    
 	    ServerHost getServerHostByName(String serverName); 
 	    
 	    List<ServerHost> getAllServerHosts(); 
 	    
-	    int deleteServerHost(String serverName);
-
+	    void deleteServerHost(String serverName);
 }
