@@ -1,18 +1,21 @@
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+  
   <parent>
     <groupId>com.barrouh</groupId>
-    <artifactId>AutomaticDeploymentSystem</artifactId>
+    <artifactId>java-deployment-system</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   
-  <artifactId>AdsCore</artifactId>
-  <packaging>jar</packaging>
-  <name>Automatic Deployment System : AdsCore</name>
-  <url>https://github.com/barrouh/AutomaticDeploymentSystem</url>
-
+  <artifactId>jds-gui</artifactId>
+  <packaging>war</packaging>
+  <name>Java Deployment System : JDS-GUI</name>
+  
   <dependencies>
-    
+
   </dependencies>
+  <build>
+    <finalName>jds-gui</finalName>
+  </build>
 </project>

@@ -6,14 +6,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.barrouh</groupId>
-		<artifactId>AutomaticDeploymentSystem</artifactId>
+		<artifactId>java-deployment-system</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>AdsDomain</artifactId>
+	<artifactId>jds-omain</artifactId>
 	<packaging>jar</packaging>
-	<name>Automatic Deployment System : AdsDomain</name>
-	<url>https://github.com/barrouh/AutomaticDeploymentSystem</url>
+	<name>Java Deployment System : JDS-DOMAIN</name>
 	
 	<properties>
 		<jpa.version>2.2</jpa.version>
