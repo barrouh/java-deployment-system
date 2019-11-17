@@ -25,7 +25,7 @@ public class Application implements Serializable {
 	@Column(name = "APPLICATION_NAME", nullable = false)
     private String applicationName;
     
-	@Column(name = "APPLICATION_NAME", nullable = false)
+	@Column(name = "APPLICATION_TYPE", nullable = false)
     private String  applicationType;
     
 	public Application() {

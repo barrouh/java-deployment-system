@@ -57,12 +57,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>5.0.11.RELEASE</spring.version>
-		<hibernate.version>5.2.9.Final</hibernate.version>
-		<mysql.connector.version>6.0.5</mysql.connector.version>
+		<spring.version>5.1.9.RELEASE</spring.version>
+		<hibernate.version>5.4.5.Final</hibernate.version>
+		<mysql.connector.version>8.0.17</mysql.connector.version>
 		<jstl.version>1.2</jstl.version>
 		<servlet-api.version>3.1.0</servlet-api.version>
-		<log4j.version>2.11.0</log4j.version>
+		<log4j2.version>2.11.0</log4j2.version>
 		<junit.version>5.4.2</junit.version>
 		<dbcp2.version>2.1.1</dbcp2.version>
 	</properties>
@@ -102,12 +102,12 @@
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-api</artifactId>
-				<version>${log4j.version}</version>
+				<version>${log4j2.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.logging.log4j</groupId>
 				<artifactId>log4j-core</artifactId>
-				<version>${log4j.version}</version>
+				<version>${log4j2.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>

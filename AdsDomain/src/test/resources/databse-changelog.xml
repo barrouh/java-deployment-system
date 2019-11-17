@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="barrouh (generated)" id="1569095712572-1">
+        <createTable tableName="APPLICATION">
+            <column name="APPLICATION_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="APPLICATION_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="APPLICATION_TYPE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-2">
+        <createTable tableName="BINDING">
+            <column name="BINDING_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="APPLICATION_ID" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVER_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IP_ADDRESS" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-3">
+        <createTable tableName="IP_ADDRESS">
+            <column name="IP_ADDRESS" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVER_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-4">
+        <createTable tableName="SERVER_HOST">
+            <column name="SERVER_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-5">
+        <createTable tableName="USERS">
+            <column name="USERNAME" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_TYPE" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVER_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-6">
+        <addPrimaryKey columnNames="APPLICATION_ID" constraintName="PRIMARY" tableName="APPLICATION"/>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-7">
+        <addPrimaryKey columnNames="BINDING_ID" constraintName="PRIMARY" tableName="BINDING"/>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-8">
+        <addPrimaryKey columnNames="IP_ADDRESS" constraintName="PRIMARY" tableName="IP_ADDRESS"/>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-9">
+        <addPrimaryKey columnNames="SERVER_NAME" constraintName="PRIMARY" tableName="SERVER_HOST"/>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-10">
+        <addPrimaryKey columnNames="USERNAME" constraintName="PRIMARY" tableName="USERS"/>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-11">
+        <createIndex indexName="APPLICATION_ID" tableName="BINDING">
+            <column name="APPLICATION_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-12">
+        <createIndex indexName="IP_ADDRESS" tableName="BINDING">
+            <column name="IP_ADDRESS"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-13">
+        <createIndex indexName="SERVER_NAME" tableName="BINDING">
+            <column name="SERVER_NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-14">
+        <createIndex indexName="SERVER_NAME" tableName="IP_ADDRESS">
+            <column name="SERVER_NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-15">
+        <createIndex indexName="SERVER_NAME" tableName="USERS">
+            <column name="SERVER_NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-16">
+        <addForeignKeyConstraint baseColumnNames="APPLICATION_ID" baseTableName="BINDING" constraintName="BINDING_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="APPLICATION"/>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-17">
+        <addForeignKeyConstraint baseColumnNames="SERVER_NAME" baseTableName="BINDING" constraintName="BINDING_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="SERVER_HOST"/>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-18">
+        <addForeignKeyConstraint baseColumnNames="IP_ADDRESS" baseTableName="BINDING" constraintName="BINDING_ibfk_3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="IP_ADDRESS"/>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-19">
+        <addForeignKeyConstraint baseColumnNames="SERVER_NAME" baseTableName="IP_ADDRESS" constraintName="IP_ADDRESS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="SERVER_HOST"/>
+    </changeSet>
+    <changeSet author="barrouh (generated)" id="1569095712572-20">
+        <addForeignKeyConstraint baseColumnNames="SERVER_NAME" baseTableName="USERS" constraintName="USERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="SERVER_HOST"/>
+    </changeSet>
+</databaseChangeLog>
