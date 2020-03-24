@@ -8,7 +8,7 @@
 			<PatternLayout pattern="%d %p %t: %c{1}: %m%n" />
 		</Console> 
 		
-	    <RollingFile name="FILE" fileName="target/log/ADS-test.log" filePattern="target/log/ADS-test.log-%d{yyyy-MM-dd}.log" >
+	    <RollingFile name="FILE" fileName="target/log/jds-test.log" filePattern="target/log/jds-test.log-%d{yyyy-MM-dd}.log" >
 			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
 			<Policies>
 			<TimeBasedTriggeringPolicy />

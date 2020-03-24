@@ -10,7 +10,7 @@ import com.barrouh.ads.dao.ApplicationRepository;
 import com.barrouh.ads.dao.BindingRepository;
 import com.barrouh.ads.dao.ServerHostRepository;
 import com.barrouh.ads.dao.UserRepository;
-import com.barrouh.ads.dao.impl.AdsRepository;
+import com.barrouh.ads.dao.impl.JdsRepository;
 import com.barrouh.ads.domain.Application;
 import com.barrouh.ads.domain.Binding;
 import com.barrouh.ads.domain.ServerHost;
@@ -22,128 +22,128 @@ import com.barrouh.ads.domain.User;
  *
  */
 @Service
-public class AdsService implements ApplicationRepository, BindingRepository ,ServerHostRepository, UserRepository {
+public class JdsService implements ApplicationRepository, BindingRepository ,ServerHostRepository, UserRepository {
 	
 	@Autowired
-	AdsRepository adsRepository;
+	JdsRepository jdsRepository;
 
 	@Override
 	@Transactional
 	public void addUser(User user) {
-		 adsRepository.addUser(user);
+		 jdsRepository.addUser(user);
 	}
 
 	@Override
 	@Transactional
 	public void updateUser(User user) {
-		 adsRepository.updateUser(user);
+		 jdsRepository.updateUser(user);
 	}
 
 	@Override
 	@Transactional
 	public User getUserByUserName(String userName) {
-		return adsRepository.getUserByUserName(userName);
+		return jdsRepository.getUserByUserName(userName);
 	}
 
 	@Override
 	@Transactional
 	public List<User> getAllUsers() {
-		return adsRepository.getAllUsers();
+		return jdsRepository.getAllUsers();
 	}
 
 	@Override
 	@Transactional
 	public void deleteUser(String userName) {
-		 adsRepository.deleteUser(userName);
+		 jdsRepository.deleteUser(userName);
 	}
 
 	@Override
 	@Transactional
 	public void addServerHost(ServerHost serverHost) {
-		 adsRepository.addServerHost(serverHost);
+		 jdsRepository.addServerHost(serverHost);
 	}
 
 	@Override
 	@Transactional
 	public void updateServerHost(ServerHost serverHost) {
-		 adsRepository.updateServerHost(serverHost);
+		 jdsRepository.updateServerHost(serverHost);
 	}
 
 	@Override
 	@Transactional
 	public ServerHost getServerHostByName(String serverName) {
-		return adsRepository.getServerHostByName(serverName);
+		return jdsRepository.getServerHostByName(serverName);
 	}
 
 	@Override
 	@Transactional
 	public List<ServerHost> getAllServerHosts() {
-		return adsRepository.getAllServerHosts();
+		return jdsRepository.getAllServerHosts();
 	}
 
 	@Override
 	@Transactional
 	public void deleteServerHost(String serverName) {
-		 adsRepository.deleteServerHost(serverName);
+		 jdsRepository.deleteServerHost(serverName);
 	}
 
 	@Override
 	@Transactional
 	public void addBinding(Binding binding) {
-		 adsRepository.addBinding(binding);
+		 jdsRepository.addBinding(binding);
 	}
 
 	@Override
 	@Transactional
 	public void updateBinding(Binding binding) {
-		 adsRepository.updateBinding(binding);
+		 jdsRepository.updateBinding(binding);
 	}
 
 	@Override
 	@Transactional
 	public Binding getBindingById(String bindingId) {
-		return adsRepository.getBindingById(bindingId);
+		return jdsRepository.getBindingById(bindingId);
 	}
 
 	@Override
 	@Transactional
 	public List<Binding> getAllBindings() {
-		return adsRepository.getAllBindings();
+		return jdsRepository.getAllBindings();
 	}
 
 	@Override
 	@Transactional
 	public void deleteBinding(String bindingId) {
-		 adsRepository.deleteBinding(bindingId);
+		 jdsRepository.deleteBinding(bindingId);
 	}
 
 	@Override
 	@Transactional
 	public void addApplication(Application application) {
-		 adsRepository.addApplication(application);
+		 jdsRepository.addApplication(application);
 	}
 
 	@Override
 	@Transactional
 	public void  updateApplication(Application application) {
-		 adsRepository.updateApplication(application);
+		 jdsRepository.updateApplication(application);
 	}
 
 	@Override
 	@Transactional
 	public Application getApplicationById(String applicationId) {
-		return adsRepository.getApplicationById(applicationId);
+		return jdsRepository.getApplicationById(applicationId);
 	}
 
 	@Override
 	@Transactional
 	public List<Application> getAllApplications() {
-		return adsRepository.getAllApplications();
+		return jdsRepository.getAllApplications();
 	}
 
 	@Override
 	@Transactional
 	public void deleteApplication(String applicationId) {
-		 adsRepository.deleteApplication(applicationId);
+		 jdsRepository.deleteApplication(applicationId);
 	}
 }

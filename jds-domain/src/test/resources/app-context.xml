@@ -30,7 +30,7 @@
     
     <bean id="databaseStructureInitializer" class="liquibase.integration.spring.SpringLiquibase">
         <property name="dataSource" ref="dataSource" />
-        <property name="changeLog" value="databse-changelog.xml" />
+        <property name="changeLog" value="database/databse-changelog.xml" />
         <property name="defaultSchema" value="${_DB_SCHEMA}" />
     </bean>
 
@@ -46,9 +46,12 @@
 			</props>
 		</property>
 	</bean>
-
+	
 	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="jdsService" class="com.barrouh.ads.service.JdsService">
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>

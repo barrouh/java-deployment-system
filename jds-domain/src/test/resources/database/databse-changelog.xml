@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet author="barrouh (generated)" id="1569095712572-1">
-        <createTable tableName="APPLICATION">
+        <createTable schemaName="JDS_SCHEMA" tableName="APPLICATION">
             <column name="APPLICATION_ID" type="INT">
                 <constraints nullable="false"/>
             </column>
@@ -14,7 +14,7 @@
         </createTable>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-2">
-        <createTable tableName="BINDING">
+        <createTable schemaName="JDS_SCHEMA" tableName="BINDING">
             <column name="BINDING_ID" type="INT">
                 <constraints nullable="false"/>
             </column>
@@ -30,7 +30,7 @@
         </createTable>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-3">
-        <createTable tableName="IP_ADDRESS">
+        <createTable schemaName="JDS_SCHEMA" tableName="IP_ADDRESS">
             <column name="IP_ADDRESS" type="INT">
                 <constraints nullable="false"/>
             </column>
@@ -43,14 +43,14 @@
         </createTable>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-4">
-        <createTable tableName="SERVER_HOST">
+        <createTable  schemaName="JDS_SCHEMA" tableName="SERVER_HOST">
             <column name="SERVER_NAME" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-5">
-        <createTable tableName="USERS">
+        <createTable schemaName="JDS_SCHEMA" tableName="USER">
             <column name="USERNAME" type="VARCHAR(30)">
                 <constraints nullable="false"/>
             </column>
@@ -65,59 +65,36 @@
             </column>
         </createTable>
     </changeSet>
+    
     <changeSet author="barrouh (generated)" id="1569095712572-6">
-        <addPrimaryKey columnNames="APPLICATION_ID" constraintName="PRIMARY" tableName="APPLICATION"/>
+        <addPrimaryKey columnNames="APPLICATION_ID" constraintName="PRIMARY_APPLICATION" tableName="APPLICATION"/>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-7">
-        <addPrimaryKey columnNames="BINDING_ID" constraintName="PRIMARY" tableName="BINDING"/>
+        <addPrimaryKey columnNames="BINDING_ID" constraintName="PRIMARY_BINDING" tableName="BINDING"/>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-8">
-        <addPrimaryKey columnNames="IP_ADDRESS" constraintName="PRIMARY" tableName="IP_ADDRESS"/>
+        <addPrimaryKey columnNames="IP_ADDRESS" constraintName="PRIMARY_IP_ADDRESS" tableName="IP_ADDRESS"/>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-9">
-        <addPrimaryKey columnNames="SERVER_NAME" constraintName="PRIMARY" tableName="SERVER_HOST"/>
+        <addPrimaryKey columnNames="SERVER_NAME" constraintName="PRIMARY_SERVER_HOST" tableName="SERVER_HOST"/>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-10">
-        <addPrimaryKey columnNames="USERNAME" constraintName="PRIMARY" tableName="USERS"/>
+        <addPrimaryKey columnNames="USERNAME" constraintName="PRIMARY_USER" tableName="USER"/>
     </changeSet>
-    <changeSet author="barrouh (generated)" id="1569095712572-11">
-        <createIndex indexName="APPLICATION_ID" tableName="BINDING">
-            <column name="APPLICATION_ID"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="barrouh (generated)" id="1569095712572-12">
-        <createIndex indexName="IP_ADDRESS" tableName="BINDING">
-            <column name="IP_ADDRESS"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="barrouh (generated)" id="1569095712572-13">
-        <createIndex indexName="SERVER_NAME" tableName="BINDING">
-            <column name="SERVER_NAME"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="barrouh (generated)" id="1569095712572-14">
-        <createIndex indexName="SERVER_NAME" tableName="IP_ADDRESS">
-            <column name="SERVER_NAME"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="barrouh (generated)" id="1569095712572-15">
-        <createIndex indexName="SERVER_NAME" tableName="USERS">
-            <column name="SERVER_NAME"/>
-        </createIndex>
-    </changeSet>
+   
     <changeSet author="barrouh (generated)" id="1569095712572-16">
-        <addForeignKeyConstraint baseColumnNames="APPLICATION_ID" baseTableName="BINDING" constraintName="BINDING_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="APPLICATION"/>
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="APPLICATION_ID" baseTableName="BINDING" constraintName="BINDING_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="APPLICATION_ID" referencedTableName="APPLICATION"/>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-17">
-        <addForeignKeyConstraint baseColumnNames="SERVER_NAME" baseTableName="BINDING" constraintName="BINDING_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="SERVER_HOST"/>
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="SERVER_NAME" baseTableName="BINDING" constraintName="BINDING_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SERVER_NAME" referencedTableName="SERVER_HOST"/>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-18">
-        <addForeignKeyConstraint baseColumnNames="IP_ADDRESS" baseTableName="BINDING" constraintName="BINDING_ibfk_3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="IP_ADDRESS"/>
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="IP_ADDRESS" baseTableName="BINDING" constraintName="BINDING_ibfk_3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="IP_ADDRESS" referencedTableName="IP_ADDRESS"/>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-19">
-        <addForeignKeyConstraint baseColumnNames="SERVER_NAME" baseTableName="IP_ADDRESS" constraintName="IP_ADDRESS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="SERVER_HOST"/>
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="SERVER_NAME" baseTableName="IP_ADDRESS" constraintName="IP_ADDRESS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SERVER_NAME" referencedTableName="SERVER_HOST"/>
     </changeSet>
     <changeSet author="barrouh (generated)" id="1569095712572-20">
-        <addForeignKeyConstraint baseColumnNames="SERVER_NAME" baseTableName="USERS" constraintName="USERS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="" referencedTableName="SERVER_HOST"/>
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="SERVER_NAME" baseTableName="USER" constraintName="USER_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="SERVER_NAME" referencedTableName="SERVER_HOST"/>
     </changeSet>
 </databaseChangeLog>

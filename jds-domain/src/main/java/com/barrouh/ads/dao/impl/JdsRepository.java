@@ -27,7 +27,7 @@ import com.barrouh.ads.domain.User;
  *
  */
 @Repository
-public class AdsRepository implements ApplicationRepository, BindingRepository, ServerHostRepository, UserRepository {
+public class JdsRepository implements ApplicationRepository, BindingRepository, ServerHostRepository, UserRepository {
 
 	@Autowired
 	private SessionFactory sessionFactory;
