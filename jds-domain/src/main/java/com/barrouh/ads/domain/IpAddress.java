@@ -29,7 +29,7 @@ public class IpAddress implements Serializable {
 	private String state;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "SERVER_NAME", nullable = false)
+	@JoinColumn(name = "SERVER_ID", nullable = false)
 	private ServerHost serverHost;
 
 	public IpAddress() {

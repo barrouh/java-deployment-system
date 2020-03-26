@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-1">
+        <createTable schemaName="JDS_SCHEMA" tableName="APPLICATION">
+            <column autoIncrement="true" name="APPLICATION_ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="APPLICATION_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="APPLICATION_TYPE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="APPLICATION_USER" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-2">
+        <createTable schemaName="JDS_SCHEMA" tableName="BINDING">
+            <column autoIncrement="true" name="BINDING_ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="APPLICATION_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVER_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IP_ADDRESS" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-3">
+        <createTable schemaName="JDS_SCHEMA" tableName="IP_ADDRESS">
+            <column name="IP_ADDRESS" type="VARCHAR(255)">
+               <constraints primaryKey="true"/>
+            </column>
+            <column name="STATE" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVER_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-4">
+        <createTable schemaName="JDS_SCHEMA" tableName="SERVER_HOST">
+            <column autoIncrement="true" name="SERVER_ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="SERVER_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-5">
+        <createTable schemaName="JDS_SCHEMA" tableName="USER">
+            <column autoIncrement="true" name="USER_ID" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_TYPE" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVER_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="barrouh (generated)" id="1585259372106-13">
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="APPLICATION_USER" baseTableName="APPLICATION" constraintName="APPLICATION_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="USER_ID" referencedTableName="USER"/>
+    </changeSet>
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-14">
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="APPLICATION_ID" baseTableName="BINDING" constraintName="BINDING_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="APPLICATION_ID" referencedTableName="APPLICATION"/>
+    </changeSet>
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-15">
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="SERVER_ID" baseTableName="BINDING" constraintName="BINDING_ibfk_2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SERVER_ID" referencedTableName="SERVER_HOST"/>
+    </changeSet>
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-16">
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="IP_ADDRESS" baseTableName="BINDING" constraintName="BINDING_ibfk_3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="IP_ADDRESS" referencedTableName="IP_ADDRESS"/>
+    </changeSet>
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-17">
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="SERVER_ID" baseTableName="IP_ADDRESS" constraintName="IP_ADDRESS_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SERVER_ID" referencedTableName="SERVER_HOST"/>
+    </changeSet>
+    
+    <changeSet author="barrouh (generated)" id="1585259372106-18">
+        <addForeignKeyConstraint baseTableSchemaName="JDS_SCHEMA" baseColumnNames="SERVER_ID" baseTableName="USER" constraintName="USER_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="SERVER_ID" referencedTableName="SERVER_HOST"/>
+    </changeSet>
+    
+</databaseChangeLog>

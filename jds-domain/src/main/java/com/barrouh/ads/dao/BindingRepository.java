@@ -15,10 +15,10 @@ public interface BindingRepository {
     
     void updateBinding(Binding binding); 
     
-    Binding getBindingById(String bindingId); 
+    Binding getBindingById(Long bindingId); 
     
     List<Binding> getAllBindings(); 
     
-    void deleteBinding(String bindingId); 
+    void deleteBinding(Long bindingId); 
 
 }

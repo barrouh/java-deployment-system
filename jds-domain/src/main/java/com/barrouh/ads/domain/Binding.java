@@ -24,16 +24,16 @@ public class Binding implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "BINDING_ID", nullable = false)
-	private int bindingId;
+	private Long bindingId;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "APPLICATION_ID", nullable = false)
 	private Application application;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "SERVER_NAME", nullable = false)
+	@JoinColumn(name = "SERVER_ID", nullable = false)
 	private ServerHost serverHost;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -43,19 +43,14 @@ public class Binding implements Serializable {
 	public Binding() {
 	}
 
-	public Binding(int bindingId, Application application, ServerHost serverHost, IpAddress ipAddress) {
-		this.bindingId = bindingId;
+	public Binding(Application application, ServerHost serverHost, IpAddress ipAddress) {
 		this.application = application;
 		this.serverHost = serverHost;
 		this.ipAddress = ipAddress;
 	}
 
-	public int getBindingId() {
+	public Long getBindingId() {
 		return bindingId;
-	}
-
-	public void setBindingId(int bindingId) {
-		this.bindingId = bindingId;
 	}
 
 	public Application getApplication() {

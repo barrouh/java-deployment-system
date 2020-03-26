@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,6 +24,10 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "USER_ID", updatable = false, nullable = false)
+	private Long userId;
+
 	@Column(name = "USERNAME", nullable = false)
 	private String userName;
 	
@@ -32,7 +38,7 @@ public class User implements Serializable {
 	private String userType;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "SERVER_NAME", nullable = false)
+	@JoinColumn(name = "SERVER_ID", nullable = false)
 	private ServerHost serverHost;
 	
 	public User() {
@@ -43,6 +49,10 @@ public class User implements Serializable {
 		this.password = password;
 		this.userType = userType;
 		this.serverHost = serverHost;
+	}
+	
+	public Long getUserId() {
+		return userId;
 	}
 
 	public String getUserName() {
@@ -79,8 +89,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", password=" + password + ", Usertype=" + userType + ", serverHost="
-				+ serverHost + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", userType=" + userType
+				+ ", serverHost=" + serverHost + "]";
 	}
 
 }

@@ -8,11 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.barrouh.ads.dao.ApplicationRepository;
 import com.barrouh.ads.dao.BindingRepository;
+import com.barrouh.ads.dao.IpAddressRepository;
 import com.barrouh.ads.dao.ServerHostRepository;
 import com.barrouh.ads.dao.UserRepository;
 import com.barrouh.ads.dao.impl.JdsRepository;
 import com.barrouh.ads.domain.Application;
 import com.barrouh.ads.domain.Binding;
+import com.barrouh.ads.domain.IpAddress;
 import com.barrouh.ads.domain.ServerHost;
 import com.barrouh.ads.domain.User;
 
@@ -22,10 +24,10 @@ import com.barrouh.ads.domain.User;
  *
  */
 @Service
-public class JdsService implements ApplicationRepository, BindingRepository ,ServerHostRepository, UserRepository {
+public class JdsService implements ApplicationRepository, BindingRepository ,ServerHostRepository, UserRepository, IpAddressRepository {
 	
 	@Autowired
-	JdsRepository jdsRepository;
+	private JdsRepository jdsRepository;
 
 	@Override
 	@Transactional
@@ -101,7 +103,7 @@ public class JdsService implements ApplicationRepository, BindingRepository ,Ser
 
 	@Override
 	@Transactional
-	public Binding getBindingById(String bindingId) {
+	public Binding getBindingById(Long bindingId) {
 		return jdsRepository.getBindingById(bindingId);
 	}
 
@@ -113,7 +115,7 @@ public class JdsService implements ApplicationRepository, BindingRepository ,Ser
 
 	@Override
 	@Transactional
-	public void deleteBinding(String bindingId) {
+	public void deleteBinding(Long bindingId) {
 		 jdsRepository.deleteBinding(bindingId);
 	}
 
@@ -131,8 +133,8 @@ public class JdsService implements ApplicationRepository, BindingRepository ,Ser
 
 	@Override
 	@Transactional
-	public Application getApplicationById(String applicationId) {
-		return jdsRepository.getApplicationById(applicationId);
+	public Application getApplicationByName(String applicationName) {
+		return jdsRepository.getApplicationByName(applicationName);
 	}
 
 	@Override
@@ -145,5 +147,36 @@ public class JdsService implements ApplicationRepository, BindingRepository ,Ser
 	@Transactional
 	public void deleteApplication(String applicationId) {
 		 jdsRepository.deleteApplication(applicationId);
+	}
+
+	@Override
+	@Transactional
+	public void addIpAddress(IpAddress ipAddress) {
+		jdsRepository.addIpAddress(ipAddress);
+	}
+
+	@Override
+	@Transactional
+	public void updateIpAddress(IpAddress ipAddress) {
+		jdsRepository.updateIpAddress(ipAddress);
+		
+	}
+
+	@Override
+	@Transactional
+	public IpAddress getIpAddressByIP(String ip) {
+		return jdsRepository.getIpAddressByIP(ip);
+	}
+
+	@Override
+	@Transactional
+	public List<IpAddress> getAllIpAddresss() {
+		return jdsRepository.getAllIpAddresss();
+	}
+
+	@Override
+	@Transactional
+	public void deleteIpAddress(String ip) {
+		jdsRepository.deleteIpAddress(ip);
 	}
 }

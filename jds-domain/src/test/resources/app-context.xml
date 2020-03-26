@@ -30,7 +30,7 @@
     
     <bean id="databaseStructureInitializer" class="liquibase.integration.spring.SpringLiquibase">
         <property name="dataSource" ref="dataSource" />
-        <property name="changeLog" value="database/databse-changelog.xml" />
+        <property name="changeLog" value="database/database-changelog.xml" />
         <property name="defaultSchema" value="${_DB_SCHEMA}" />
     </bean>
 

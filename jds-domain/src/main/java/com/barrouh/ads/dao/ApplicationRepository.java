@@ -15,7 +15,7 @@ public interface ApplicationRepository {
     
     void updateApplication(Application application); 
     
-    Application getApplicationById(String applicationId); 
+    Application getApplicationByName(String applicationName); 
     
     List<Application> getAllApplications(); 
     

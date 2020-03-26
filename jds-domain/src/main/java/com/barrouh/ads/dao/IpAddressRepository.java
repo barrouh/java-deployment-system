@@ -11,14 +11,14 @@ import com.barrouh.ads.domain.IpAddress;
  */
 public interface IpAddressRepository {
 	
-    int addIpAddress(IpAddress ipAddress); 
+    void addIpAddress(IpAddress ipAddress); 
     
-    int updateIpAddress(IpAddress ipAddress); 
+    void updateIpAddress(IpAddress ipAddress); 
     
     IpAddress getIpAddressByIP(String ip); 
     
     List<IpAddress> getAllIpAddresss(); 
     
-    int deleteIpAddress(String ipAddressId); 
+    void deleteIpAddress(String ip); 
 
 }

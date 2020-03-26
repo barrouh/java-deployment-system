@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,10 +16,12 @@ import org.springframework.stereotype.Repository;
 
 import com.barrouh.ads.dao.ApplicationRepository;
 import com.barrouh.ads.dao.BindingRepository;
+import com.barrouh.ads.dao.IpAddressRepository;
 import com.barrouh.ads.dao.ServerHostRepository;
 import com.barrouh.ads.dao.UserRepository;
 import com.barrouh.ads.domain.Application;
 import com.barrouh.ads.domain.Binding;
+import com.barrouh.ads.domain.IpAddress;
 import com.barrouh.ads.domain.ServerHost;
 import com.barrouh.ads.domain.User;
 
@@ -27,7 +31,7 @@ import com.barrouh.ads.domain.User;
  *
  */
 @Repository
-public class JdsRepository implements ApplicationRepository, BindingRepository, ServerHostRepository, UserRepository {
+public class JdsRepository implements ApplicationRepository, BindingRepository, ServerHostRepository, UserRepository, IpAddressRepository {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -35,15 +39,28 @@ public class JdsRepository implements ApplicationRepository, BindingRepository, 
 	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	
+
+	private <T> T createQuery(Class<T> resultClass, String parameter, String value) {
+		CriteriaBuilder builder = getSession().getCriteriaBuilder();
+		CriteriaQuery<T> query = builder.createQuery(resultClass);
+		Root<T> root = query.from(resultClass);
+		query.select(root);
+		Predicate predicate = builder.equal(root.get(parameter), value);
+		query.where(predicate);
+		Query<T> q = getSession().createQuery(query);
+		return q.uniqueResult();
+	}
+
 	private <T> List<T> createQuery(Class<T> resultClass) {
 		CriteriaBuilder builder = getSession().getCriteriaBuilder();
 		CriteriaQuery<T> query = builder.createQuery(resultClass);
+		Root<T> root = query.from(resultClass);
+		query.select(root);
 		Query<T> q = getSession().createQuery(query);
 		if (!q.list().isEmpty()) {
 			List<T> res = new ArrayList<>();
-		    res.add(q.getSingleResult());
-		    return res;
+			res.add(q.getSingleResult());
+			return res;
 		} else {
 			return q.list();
 		}
@@ -61,7 +78,7 @@ public class JdsRepository implements ApplicationRepository, BindingRepository, 
 
 	@Override
 	public User getUserByUserName(String userName) {
-		return getSession().get(User.class, userName);
+		return createQuery(User.class, "userName", userName);
 	}
 
 	@Override
@@ -86,7 +103,7 @@ public class JdsRepository implements ApplicationRepository, BindingRepository, 
 
 	@Override
 	public ServerHost getServerHostByName(String serverName) {
-		return getSession().get(ServerHost.class, serverName);
+		return createQuery(ServerHost.class, "serverName", serverName);
 	}
 
 	@Override
@@ -100,31 +117,6 @@ public class JdsRepository implements ApplicationRepository, BindingRepository, 
 	}
 
 	@Override
-	public void addBinding(Binding binding) {
-		getSession().save(binding);
-	}
-
-	@Override
-	public void updateBinding(Binding binding) {
-		getSession().update(binding);
-	}
-
-	@Override
-	public Binding getBindingById(String bindingId) {
-		return getSession().get(Binding.class, bindingId);
-	}
-
-	@Override
-	public List<Binding> getAllBindings() {
-		return createQuery(Binding.class);
-	}
-
-	@Override
-	public void deleteBinding(String bindingId) {
-		getSession().delete(getBindingById(bindingId));
-	}
-
-	@Override
 	public void addApplication(Application application) {
 		getSession().save(application);
 	}
@@ -135,8 +127,8 @@ public class JdsRepository implements ApplicationRepository, BindingRepository, 
 	}
 
 	@Override
-	public Application getApplicationById(String applicationId) {
-		return getSession().get(Application.class, applicationId);
+	public Application getApplicationByName(String applicationName) {
+		return createQuery(Application.class, "applicationName", applicationName);
 	}
 
 	@Override
@@ -145,8 +137,58 @@ public class JdsRepository implements ApplicationRepository, BindingRepository, 
 	}
 
 	@Override
-	public void deleteApplication(String applicationId) {
-		getSession().delete(getApplicationById(applicationId));
+	public void deleteApplication(String applicationName) {
+		getSession().delete(getApplicationByName(applicationName));
 	}
 
+	@Override
+	public void addIpAddress(IpAddress ipAddress) {
+		getSession().save(ipAddress);
+
+	}
+
+	@Override
+	public void updateIpAddress(IpAddress ipAddress) {
+		getSession().update(ipAddress);
+	}
+
+	@Override
+	public IpAddress getIpAddressByIP(String ip) {
+		return createQuery(IpAddress.class, "ip", ip);
+	}
+
+	@Override
+	public List<IpAddress> getAllIpAddresss() {
+		return createQuery(IpAddress.class);
+	}
+
+	@Override
+	public void deleteIpAddress(String ip) {
+		getSession().delete(getIpAddressByIP(ip));
+	}
+
+	@Override
+	public void addBinding(Binding binding) {
+		getSession().save(binding);
+	}
+
+	@Override
+	public void updateBinding(Binding binding) {
+		getSession().update(binding);
+	}
+
+	@Override
+	public Binding getBindingById(Long bindingId) {
+		return getSession().get(Binding.class, bindingId);
+	}
+
+	@Override
+	public List<Binding> getAllBindings() {
+		return createQuery(Binding.class);
+	}
+
+	@Override
+	public void deleteBinding(Long bindingId) {
+		getSession().delete(getBindingById(bindingId));
+	}
 }

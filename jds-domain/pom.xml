@@ -20,14 +20,13 @@
 
 	<build>
 		<plugins>
-			<!-- run liquibase:generateChangeLog as maven goal to generate the database 
-				changelog -->
+			<!-- run liquibase:generateChangeLog as maven goal to generate the database changelog -->
 			<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>3.4.1</version>
 				<configuration>
-					<propertyFile>src/test/resources/liquibase.properties</propertyFile>
+					<propertyFile>src/test/resources/database/liquibase.properties</propertyFile>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -55,7 +54,6 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
@@ -76,6 +74,12 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 			<version>3.8.8</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>1.26</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
