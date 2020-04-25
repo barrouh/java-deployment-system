@@ -51,7 +51,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="jdsService" class="com.barrouh.ads.service.JdsService">
+	<bean id="jdsService" class="com.barrouh.jds.service.JdsService">
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>

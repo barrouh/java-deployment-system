@@ -1,8 +1,8 @@
-package com.barrouh.ads.dao;
+package com.barrouh.jds.dao;
 
 import java.util.List;
 
-import com.barrouh.ads.domain.Binding;
+import com.barrouh.jds.domain.Binding;
 
 /**
  * 

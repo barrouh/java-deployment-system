@@ -1,4 +1,4 @@
-package com.barrouh.ads.domain;
+package com.barrouh.jds.domain;
 
 import java.io.Serializable;
 

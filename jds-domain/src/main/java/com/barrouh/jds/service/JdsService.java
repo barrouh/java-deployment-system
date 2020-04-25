@@ -1,4 +1,4 @@
-package com.barrouh.ads.service;
+package com.barrouh.jds.service;
 
 import java.util.List;
 
@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.barrouh.ads.dao.ApplicationRepository;
-import com.barrouh.ads.dao.BindingRepository;
-import com.barrouh.ads.dao.IpAddressRepository;
-import com.barrouh.ads.dao.ServerHostRepository;
-import com.barrouh.ads.dao.UserRepository;
-import com.barrouh.ads.dao.impl.JdsRepository;
-import com.barrouh.ads.domain.Application;
-import com.barrouh.ads.domain.Binding;
-import com.barrouh.ads.domain.IpAddress;
-import com.barrouh.ads.domain.ServerHost;
-import com.barrouh.ads.domain.User;
+import com.barrouh.jds.dao.ApplicationRepository;
+import com.barrouh.jds.dao.BindingRepository;
+import com.barrouh.jds.dao.IpAddressRepository;
+import com.barrouh.jds.dao.ServerHostRepository;
+import com.barrouh.jds.dao.UserRepository;
+import com.barrouh.jds.dao.impl.JdsRepository;
+import com.barrouh.jds.domain.Application;
+import com.barrouh.jds.domain.Binding;
+import com.barrouh.jds.domain.IpAddress;
+import com.barrouh.jds.domain.ServerHost;
+import com.barrouh.jds.domain.User;
 
 /**
  * 

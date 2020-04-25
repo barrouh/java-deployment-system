@@ -1,4 +1,4 @@
-package com.barrouh.ads.service;
+package com.barrouh.jds.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,11 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.barrouh.ads.domain.Application;
-import com.barrouh.ads.domain.Binding;
-import com.barrouh.ads.domain.IpAddress;
-import com.barrouh.ads.domain.ServerHost;
-import com.barrouh.ads.domain.User;
+import com.barrouh.jds.domain.Application;
+import com.barrouh.jds.domain.Binding;
+import com.barrouh.jds.domain.IpAddress;
+import com.barrouh.jds.domain.ServerHost;
+import com.barrouh.jds.domain.User;
+import com.barrouh.jds.service.JdsService;
 
 /**
  * 
