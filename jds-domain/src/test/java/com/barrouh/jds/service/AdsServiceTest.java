@@ -16,7 +16,6 @@ import com.barrouh.jds.domain.Binding;
 import com.barrouh.jds.domain.IpAddress;
 import com.barrouh.jds.domain.ServerHost;
 import com.barrouh.jds.domain.User;
-import com.barrouh.jds.service.JdsService;
 
 /**
  * 
